@@ -20,7 +20,7 @@
 - name: connect to mysql using id and password
   community.mysql.mysql_info:
     login_user: root
-    login_password: "{{ MYSQL_ROOT_PASSWORD }}"
+    login_password: "{{ lookup('amazon.aws.aws_ssm', '/expense/dev/mysql/mysql_root_password', decrypt=True) }}"
     login_host: mysql.pavancloud5.online
   register: MYSQL_OUTPUT
   ignore_errors: true
